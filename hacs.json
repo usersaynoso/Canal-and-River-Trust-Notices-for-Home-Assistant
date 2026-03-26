@@ -1,6 +1,5 @@
 {
   "name": "Canal and River Trust Notices",
-  "domains": ["crt_notices"],
   "homeassistant": "2024.1.0",
   "render_readme": true
 }

@@ -4,9 +4,9 @@
   "codeowners": ["@usersaynoso"],
   "config_flow": true,
   "documentation": "https://github.com/usersaynoso/Canal-and-River-Trust-Notices-for-Home-Assistant",
-  "issue_tracker": "https://github.com/usersaynoso/Canal-and-River-Trust-Notices-for-Home-Assistant/issues",
-  "iot_class": "cloud_polling",
   "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/usersaynoso/Canal-and-River-Trust-Notices-for-Home-Assistant/issues",
   "loggers": ["custom_components.crt_notices"],
   "requirements": [],
   "version": "1.0.0"

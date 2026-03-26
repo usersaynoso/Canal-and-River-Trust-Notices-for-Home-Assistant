@@ -30,7 +30,6 @@ class CRTMetadataTests(unittest.TestCase):
         """HACS metadata should be compatible with a custom component repo."""
         hacs = json.loads((ROOT / "hacs.json").read_text())
         self.assertEqual(hacs["name"], "Canal and River Trust Notices")
-        self.assertEqual(hacs["domains"], ["crt_notices"])
         self.assertEqual(hacs["homeassistant"], "2024.1.0")
         self.assertTrue(hacs["render_readme"])
 
@@ -58,7 +57,7 @@ class CRTMetadataTests(unittest.TestCase):
         self.assertTrue((ROOT / ".github" / "workflows" / "hassfest.yml").exists())
         self.assertTrue((ROOT / "LICENSE").exists())
         self.assertTrue(
-            (ROOT / "custom_components" / "crt_notices" / "brands" / "icon.png").exists()
+            (ROOT / "custom_components" / "crt_notices" / "brand" / "icon.png").exists()
         )
 
 
