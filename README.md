@@ -28,6 +28,10 @@ This integration polls the public CRT notices API and creates Home Assistant ent
 5. Install `Canal and River Trust Notices`.
 6. Restart Home Assistant.
 
+Or use My Home Assistant:
+
+[![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=usersaynoso&repository=Canal-and-River-Trust-Notices-for-Home-Assistant&category=integration)
+
 ### Manual
 
 1. Copy `custom_components/crt_notices` into your Home Assistant `custom_components` directory.
