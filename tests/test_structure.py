@@ -47,6 +47,13 @@ class CRTStructureTests(unittest.TestCase):
         ).read_text()
         self.assertIn("EntityCategory.DIAGNOSTIC", binary_sensor_source)
 
+    def test_init_declares_config_entry_only_schema(self) -> None:
+        """Hassfest expects config-entry-only integrations to declare this explicitly."""
+        init_source = (
+            ROOT / "custom_components" / "crt_notices" / "__init__.py"
+        ).read_text()
+        self.assertIn("cv.config_entry_only_config_schema(DOMAIN)", init_source)
+
 
 if __name__ == "__main__":
     unittest.main()

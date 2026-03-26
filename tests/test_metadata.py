@@ -20,8 +20,8 @@ class CRTMetadataTests(unittest.TestCase):
         )
         self.assertEqual(manifest["domain"], "crt_notices")
         self.assertEqual(manifest["name"], "Canal and River Trust Notices")
-        self.assertEqual(manifest["homeassistant"], "2024.1.0")
         self.assertEqual(manifest["iot_class"], "cloud_polling")
+        self.assertEqual(manifest["integration_type"], "service")
         self.assertTrue(manifest["config_flow"])
         self.assertEqual(manifest["codeowners"], ["@usersaynoso"])
         self.assertIn("github.com/usersaynoso/Canal-and-River-Trust-Notices-for-Home-Assistant", manifest["documentation"])
@@ -31,6 +31,7 @@ class CRTMetadataTests(unittest.TestCase):
         hacs = json.loads((ROOT / "hacs.json").read_text())
         self.assertEqual(hacs["name"], "Canal and River Trust Notices")
         self.assertEqual(hacs["domains"], ["crt_notices"])
+        self.assertEqual(hacs["homeassistant"], "2024.1.0")
         self.assertTrue(hacs["render_readme"])
 
     def test_strings_and_translations_match(self) -> None:
