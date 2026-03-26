@@ -7,6 +7,7 @@ This integration polls the public CRT notices API and creates Home Assistant ent
 - blocking or restrictive navigation notices
 - the nearest matching notice
 - the total count of matching notices
+- the last successful CRT refresh timestamp
 - each active matching notice as its own sensor entity
 
 ## Features
@@ -55,6 +56,7 @@ The integration creates:
 - one binary sensor for blocking or restrictive navigation notices
 - one summary sensor for the nearest notice
 - one summary sensor for the notice count
+- one diagnostic sensor for the last successful update time
 - one sensor per active matching notice
 
 ## Data source

@@ -33,12 +33,16 @@ class CRTStructureTests(unittest.TestCase):
         sensor_source = (
             ROOT / "custom_components" / "crt_notices" / "sensor.py"
         ).read_text()
+        self.assertIn("CRTLastUpdatedSensor", sensor_source)
+        self.assertIn("last_updated", sensor_source)
+        self.assertIn("SensorDeviceClass.TIMESTAMP", sensor_source)
         self.assertIn("class CRTActiveNoticeSensor", sensor_source)
         self.assertIn("coordinator.async_add_listener", sensor_source)
         self.assertIn('notice_{notice_id}', sensor_source)
         self.assertIn("_remove_stale_notice_registry_entries", sensor_source)
         self.assertIn("entity_registry.async_remove", sensor_source)
         self.assertIn("EntityCategory.DIAGNOSTIC", sensor_source)
+        self.assertIn("self.coordinator.data.last_updated", sensor_source)
 
     def test_binary_sensor_uses_diagnostic_category(self) -> None:
         """Summary/problem status should live in HA's diagnostic grouping."""
@@ -53,6 +57,8 @@ class CRTStructureTests(unittest.TestCase):
             ROOT / "custom_components" / "crt_notices" / "__init__.py"
         ).read_text()
         self.assertIn("cv.config_entry_only_config_schema(DOMAIN)", init_source)
+        self.assertIn("last_updated: datetime", init_source)
+        self.assertIn("last_updated=dt_util.utcnow()", init_source)
 
 
 if __name__ == "__main__":

@@ -9,5 +9,5 @@
   "issue_tracker": "https://github.com/usersaynoso/Canal-and-River-Trust-Notices-for-Home-Assistant/issues",
   "loggers": ["custom_components.crt_notices"],
   "requirements": [],
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

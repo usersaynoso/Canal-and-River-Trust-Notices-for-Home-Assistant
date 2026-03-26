@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any
 
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import entity_registry as er
@@ -30,6 +31,7 @@ async def async_setup_entry(
     entities: list[SensorEntity] = [
         CRTNearestStoppageSensor(coordinator, entry),
         CRTNoticeCountSensor(coordinator, entry),
+        CRTLastUpdatedSensor(coordinator, entry),
     ]
 
     for notice in coordinator.data.notices:
@@ -138,6 +140,24 @@ class CRTNoticeCountSensor(CRTNoticesEntity, SensorEntity):
     def extra_state_attributes(self) -> dict[str, Any]:
         """Return a summary list for matched notices."""
         return _all_notice_attributes(self.coordinator.data.notices)
+
+
+class CRTLastUpdatedSensor(CRTNoticesEntity, SensorEntity):
+    """Show the last successful coordinator refresh time."""
+
+    _attr_device_class = SensorDeviceClass.TIMESTAMP
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_translation_key = "last_updated"
+
+    def __init__(self, coordinator, entry: ConfigEntry) -> None:
+        """Initialize the last updated sensor."""
+        super().__init__(coordinator, entry)
+        self._attr_unique_id = f"{DOMAIN}_{entry.entry_id}_last_updated"
+
+    @property
+    def native_value(self) -> datetime | None:
+        """Return the last successful refresh timestamp."""
+        return self.coordinator.data.last_updated
 
 
 class CRTActiveNoticeSensor(CRTNoticesEntity, SensorEntity):

@@ -76,6 +76,9 @@
       }
     },
     "sensor": {
+      "last_updated": {
+        "name": "Last updated"
+      },
       "nearest_stoppage": {
         "name": "Nearest stoppage"
       },

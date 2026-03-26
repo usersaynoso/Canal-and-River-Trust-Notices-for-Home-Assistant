@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import asyncio
 from dataclasses import dataclass
-from datetime import timedelta
+from datetime import datetime, timedelta
 import logging
 from typing import Any
 
@@ -169,6 +169,7 @@ class CRTCoordinatorData:
     tracker_latitude: float | None
     tracker_longitude: float | None
     using_home_fallback: bool
+    last_updated: datetime
 
     @property
     def nearest_notice(self) -> CRTNotice | None:
@@ -261,6 +262,7 @@ class CRTNoticesCoordinator(DataUpdateCoordinator[CRTCoordinatorData]):
                 tracker_latitude=None,
                 tracker_longitude=None,
                 using_home_fallback=False,
+                last_updated=dt_util.utcnow(),
             )
 
         tracker_latitude, tracker_longitude, using_home_fallback = (
@@ -277,6 +279,7 @@ class CRTNoticesCoordinator(DataUpdateCoordinator[CRTCoordinatorData]):
             tracker_latitude=tracker_latitude,
             tracker_longitude=tracker_longitude,
             using_home_fallback=using_home_fallback,
+            last_updated=dt_util.utcnow(),
         )
 
     def _build_request_params(self) -> dict[str, str]:
