@@ -1,0 +1,87 @@
+{
+  "title": "Canal and River Trust Notices",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Choose setup mode",
+        "description": "Pick how this integration should match Canal & River Trust notices.",
+        "data": {
+          "mode": "Mode"
+        }
+      },
+      "gps": {
+        "title": "GPS proximity",
+        "description": "Track a device tracker and match published notices within a configurable radius. If the tracker is missing or unavailable, Home Assistant's configured home coordinates are used.",
+        "data": {
+          "device_tracker_entity_id": "Device tracker",
+          "radius_miles": "Search radius (miles)"
+        },
+        "data_description": {
+          "device_tracker_entity_id": "Optional. Leave empty to always use Home Assistant home coordinates.",
+          "radius_miles": "Only notices with geometry inside this radius are matched. Notices without geometry are still included."
+        }
+      },
+      "manual": {
+        "title": "Manual canal selection",
+        "description": "Select one or more CRT waterways to monitor. Level-1 waterways are shown by default. If you enable all waterways, submit once to reload the expanded list.",
+        "data": {
+          "show_all_waterways": "Show all waterways",
+          "waterways": "Waterways"
+        },
+        "data_description": {
+          "show_all_waterways": "Enable this to include branches and sub-branches in the selector.",
+          "waterways": "Matches use case-insensitive substring checks against CRT's waterway text."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the CRT API.",
+      "no_waterways": "Select at least one waterway."
+    },
+    "abort": {
+      "already_configured": "This CRT notices source is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Canal and River Trust Notices options",
+        "description": "Update notice filtering and refresh settings.",
+        "data": {
+          "device_tracker_entity_id": "Device tracker",
+          "radius_miles": "Search radius (miles)",
+          "show_all_waterways": "Show all waterways",
+          "waterways": "Waterways",
+          "lookahead_days": "Lookahead days",
+          "update_interval_minutes": "Update interval (minutes)"
+        },
+        "data_description": {
+          "device_tracker_entity_id": "Optional. Leave empty to use Home Assistant home coordinates.",
+          "radius_miles": "Only used in GPS mode.",
+          "show_all_waterways": "Enable this to include branches and sub-branches in the selector.",
+          "waterways": "Only used in manual mode.",
+          "lookahead_days": "How many days ahead to request from the CRT API.",
+          "update_interval_minutes": "How often the integration refreshes published notices."
+        }
+      }
+    },
+    "error": {
+      "no_waterways": "Select at least one waterway."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "blocked": {
+        "name": "Blocked / restriction active"
+      }
+    },
+    "sensor": {
+      "nearest_stoppage": {
+        "name": "Nearest stoppage"
+      },
+      "notice_count": {
+        "name": "Notice count"
+      }
+    }
+  }
+}

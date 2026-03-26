@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+
+custom_components/**/__pycache__/
+tests/__pycache__/
+
+crt_9266.js
+crt_app.js
+crt_page.html
+notices_page.html
